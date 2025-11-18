@@ -5,13 +5,14 @@ import { cartState } from "@/state";
 import TransitionLink from "./transition-link";
 import { useRouteHandle } from "@/hooks";
 import Badge from "./badge";
+import { Button } from "zmp-ui";
 
 const NAV_ITEMS = [
-  {
-    name: "Trang chủ",
-    path: "/",
-    icon: HomeIcon,
-  },
+  // {
+  //   name: "Trang chủ",
+  //   path: "/",
+  //   icon: HomeIcon,
+  // },
   {
     name: "Danh mục",
     path: "/categories",
@@ -44,18 +45,13 @@ export default function Footer() {
     return (
       <>
         <HorizontalDivider />
-        <div
-          className="w-full px-4 pt-2 grid pb-sb"
-          style={{
-            gridTemplateColumns: `repeat(${NAV_ITEMS.length}, 1fr)`,
-          }}
-        >
-          {NAV_ITEMS.map((item) => {
+        <div className="w-full px-4 pt-2 flex items-stretch pb-sb">
+          {NAV_ITEMS.slice(0, 3).map((item) => {
             return (
               <TransitionLink
                 to={item.path}
                 key={item.path}
-                className="flex flex-col items-center space-y-0.5 p-1 pb-0.5 cursor-pointer active:scale-105"
+                className="flex flex-col items-center space-y-0.5 p-1 pb-0.5 cursor-pointer active:scale-105 flex-1"
               >
                 {({ isActive }) => (
                   <>
@@ -72,6 +68,9 @@ export default function Footer() {
               </TransitionLink>
             );
           })}
+          <Button className="bg-red-500 text-white rounded-lg px-3 py-2 whitespace-nowrap flex flex-col items-center justify-center active:scale-105 min-w-[80px] mỵ-5">
+            Đặt mua ngay
+          </Button>
         </div>
       </>
     );
