@@ -56,9 +56,10 @@ export interface CarouselProps {
 }
 
 export default function Carousel(props: CarouselProps) {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "center" }, [
-    Autoplay({ active: !props.disabled }),
-  ]);
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    { align: "center", loop: true },
+    [Autoplay({ active: !props.disabled })]
+  );
   const { selectedIndex, scrollSnaps, onDotButtonClick } =
     useDotButton(emblaApi);
 
@@ -78,7 +79,7 @@ export default function Carousel(props: CarouselProps) {
             key={index}
             onClick={() => onDotButtonClick(index)}
             className={`rounded-full w-1 h-1 bg-black/10 ${
-              index === selectedIndex && !props.disabled ? "bg-primary" : ""
+              index === selectedIndex && !props.disabled ? "w-3 bg-primary" : ""
             }`}
           />
         ))}
