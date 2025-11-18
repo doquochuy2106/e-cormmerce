@@ -8,7 +8,7 @@ export default function Banners() {
   return (
     <Carousel
       slides={banners.map((banner) => (
-        <img className="w-full h-24 rounded" src={banner} />
+        <img className="w-full rounded" src={banner} />
       ))}
     />
   );

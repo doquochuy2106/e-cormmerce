@@ -14,7 +14,7 @@ export default function Headerr() {
             <div className="flex items-center gap-2 w-full">
               <Input.Search
                 placeholder="Tìm kiếm..."
-                // onFocus={() => navigate("/search")}
+                onFocus={() => navigate("/search")}
               />
 
               {/* Nút đăng nhập */}

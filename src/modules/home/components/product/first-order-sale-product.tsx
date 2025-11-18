@@ -1,5 +1,6 @@
 import { Product } from "@/types";
-import { Button, Icon, Text } from "zmp-ui";
+import { startTransition } from "react";
+import { Button, Icon, Text, useNavigate } from "zmp-ui";
 
 interface FirstOrderSaleProps {
   product: Product;
@@ -7,8 +8,16 @@ interface FirstOrderSaleProps {
 const FirstOrderSaleProduct: React.FunctionComponent<FirstOrderSaleProps> = ({
   product,
 }) => {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    startTransition(() => {
+      navigate(`/product/${product.id}`);
+    });
+  };
+
   return (
-    <div className="flex p-2 border-b">
+    <div className="flex p-2 border-b" onClick={handleClick}>
       <div className="w-[40%] relative">
         <img src={product.image} alt={product.name} />
         <div className="absolute top-0 left-0 right-0 flex justify-between items-center">
@@ -41,12 +50,9 @@ const FirstOrderSaleProduct: React.FunctionComponent<FirstOrderSaleProps> = ({
           </p>
         </div>
         <p>Đã bán: 123.456</p>
-        <Button
-          size="small"
-          className="absolute bottom-0 right-0 !p-1 !h-auto !min-h-0 !text-sm !rounded-full"
-        >
+        <button className="absolute bottom-0 right-0  bg-green-600 px-3 py-2 rounded-md text-white">
           +
-        </Button>
+        </button>
       </div>
     </div>
   );

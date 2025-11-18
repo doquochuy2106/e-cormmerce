@@ -13,6 +13,7 @@ export default function Category() {
           gridTemplateColumns: `repeat(${Math.ceil(
             categories.length > 4 ? categories.length / 2 : categories.length
           )}, minmax(70px, 1fr))`,
+          maxWidth: "100%",
         }}
       >
         {categories.map((category) => (

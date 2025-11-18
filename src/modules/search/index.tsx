@@ -1,32 +1,54 @@
-import ProductItem from "@/components/product-item";
 import Section from "@/components/section";
 import { ProductItemSkeleton } from "@/components/skeleton";
-import { useAtomValue } from "jotai";
-import { HTMLAttributes, Suspense } from "react";
-import {
-  keywordState,
-  recommendedProductsState,
-  searchResultState,
-} from "@/state";
-import ProductGrid from "@/components/product-grid";
-import { EmptySearchResult } from "@/components/empty";
+import { HTMLAttributes, Suspense, useEffect, useRef, useState } from "react";
+import { Box, Header, Input, Page } from "zmp-ui";
+import { RecommendedProducts } from "./components/recommend-product";
+import { InputRef } from "zmp-ui/input";
+import SearchResult from "./components/search-result";
+import BottomBar from "./components/bottom-bar";
 
-export function SearchResult() {
-  const searchResult = useAtomValue(searchResultState);
+export function DisplaySearchPage() {
+  const [keyword, setKeyword] = useState<string>("");
 
+  const searchRef = useRef<InputRef | null>(null);
+  useEffect(() => {
+    setTimeout(() => {
+      searchRef.current?.input?.focus();
+    }, 50);
+  }, []);
   return (
-    <div className="w-full h-full space-y-2 bg-background">
-      <Section
-        title={`Kết quả (${searchResult.length})`}
-        className="h-full flex flex-col overflow-y-auto pb-16"
-      >
-        {searchResult.length ? (
-          <ProductGrid products={searchResult} />
-        ) : (
-          <EmptySearchResult />
-        )}
-      </Section>
-    </div>
+    <Page className="hide-scrollbar overflow-x-hidden">
+      <Header
+        title={
+          (
+            <div className="w-[75%] flex flex-col">
+              <div className="flex items-center gap-2 w-full">
+                <span className="text-black font-semibold text-lg">
+                  Sendo Farm
+                </span>
+              </div>
+            </div>
+          ) as unknown as string
+        }
+      />
+      <div className="pt-16" />
+      <div className="bg-white p-3">
+        <Input.Search
+          ref={searchRef}
+          placeholder="Tìm sản phẩm"
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+        />
+      </div>
+      {keyword === "" ? (
+        <RecommendedProducts backgroundColor="bg-green-100" showAll />
+      ) : (
+        <Box className="flex-1 overflow-y-auto overflow-x-hidden hide-scrollbar">
+          <SearchResult keyword={keyword} />
+        </Box>
+      )}
+      <BottomBar />
+    </Page>
   );
 }
 
@@ -57,35 +79,10 @@ export function ProductGridSkeleton({
   );
 }
 
-export function RecommendedProducts() {
-  const recommendedProducts = useAtomValue(recommendedProductsState);
-
-  return (
-    <Section title="Gợi ý sản phẩm">
-      <div className="py-2 px-4 pb-6 flex space-x-2 overflow-x-auto">
-        {recommendedProducts.map((product) => (
-          <div
-            key={product.id}
-            className="flex-none"
-            style={{ flexBasis: "calc((100vw - 48px) / 2)" }}
-          >
-            <ProductItem key={product.id} product={product} />
-          </div>
-        ))}
-      </div>
-    </Section>
-  );
-}
-
 export default function SearchPage() {
-  const keyword = useAtomValue(keywordState);
-
-  if (keyword) {
-    return (
-      <Suspense fallback={<SearchResultSkeleton />}>
-        <SearchResult />
-      </Suspense>
-    );
-  }
-  return <RecommendedProducts />;
+  return (
+    <Suspense fallback={<SearchResultSkeleton />}>
+      <DisplaySearchPage />
+    </Suspense>
+  );
 }

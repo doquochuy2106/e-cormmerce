@@ -5,6 +5,9 @@ import { AppProps } from "zmp-ui/app";
 import { Route, Routes } from "react-router";
 import HomePage from "@/modules/home/index";
 import AppLayout from "./components/layout";
+import SearchPage from "./modules/search";
+import ProductDetailPage from "./modules/product-detail";
+import PromotionPage from "./modules/promotion";
 
 const SnackbarProviderComponent = ((SnackbarProvider as any).default ??
   SnackbarProvider) as React.ComponentType<any>;
@@ -15,11 +18,12 @@ const Layout = () => {
       <SnackbarProviderComponent>
         <ZMPRouter>
           <Routes>
-            {/* LayoutWrapper là element cho route root — Outlet dùng để render HomePage */}
             <Route path="/" element={<AppLayout />}>
               <Route index element={<HomePage />} />
-              {/* <Route path="other" element={<OtherPage />} /> */}
             </Route>
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/promotion" element={<PromotionPage />} />
           </Routes>
         </ZMPRouter>
       </SnackbarProviderComponent>
