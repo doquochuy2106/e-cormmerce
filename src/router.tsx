@@ -1,18 +1,18 @@
 import Layout from "@/components/layout";
-import CartPage from "@/pages/cart";
-import CategoryDetailPage from "@/pages/catalog/category-detail";
-import CategoryListPage from "@/pages/catalog/category-list";
-import ProductDetailPage from "@/pages/catalog/product-detail";
-import HomePage from "@/pages/home";
-import ProfilePage from "@/pages/profile";
-import SearchPage from "@/pages/search";
+import CartPage from "@/modules/cart";
+import CategoryDetailPage from "@/modules/catalog/category-detail";
+import CategoryListPage from "@/modules/catalog/category-list";
+import ProductDetailPage from "@/modules/catalog/product-detail";
+import HomePage from "@/modules/home";
+import ProfilePage from "@/modules/profile";
+import SearchPage from "@/modules/search";
 import { createBrowserRouter } from "react-router-dom";
 import { getBasePath } from "@/utils/zma";
-import OrdersPage from "./pages/orders";
-import ShippingAddressPage from "./pages/cart/shipping-address";
-import StationsPage from "./pages/cart/stations";
-import OrderDetailPage from "./pages/orders/detail";
-import ProfileEditorPage from "./pages/profile/editor";
+import OrdersPage from "./modules/orders";
+import ShippingAddressPage from "./modules/cart/shipping-address";
+import StationsPage from "./modules/cart/stations";
+import OrderDetailPage from "./modules/orders/detail";
+import ProfileEditorPage from "./modules/profile/editor";
 
 const router = createBrowserRouter(
   [

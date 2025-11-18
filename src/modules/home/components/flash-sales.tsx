@@ -1,0 +1,31 @@
+import { useAtomValue } from "jotai";
+import { flashSaleProductsState } from "@/state";
+import { Text } from "zmp-ui";
+import SaleProduct from "./product/sale-product";
+
+export default function FlashSales() {
+  const products = useAtomValue(flashSaleProductsState);
+
+  return (
+    <div className="px-2">
+      <div className="bg-section rounded-xl p-2">
+        <div className="flex justify-between">
+          <Text className="+ font-semibold px-1 mb-2">
+            Ưu đãi khách hàng mới
+          </Text>
+          <Text className="text-primary ">Xem thêm</Text>
+        </div>
+        <div className="bg-section flex gap-2 py-2 overflow-x-auto rounded-xl hide-scrollbar">
+          {products.length > 0 &&
+            products.map((product) => (
+              <SaleProduct
+                key={product.id}
+                imageUrl={product.image}
+                price={product.price}
+              />
+            ))}
+        </div>
+      </div>
+    </div>
+  );
+}
