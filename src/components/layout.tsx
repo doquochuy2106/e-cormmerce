@@ -13,7 +13,7 @@ export default function AppLayout() {
         <Header />
         <div
           className="flex-1 overflow-y-auto bg-background"
-          style={{ paddingTop: "100px" }}
+          style={{ paddingTop: "40px" }}
         >
           <Suspense fallback={<PageSkeleton />}>
             <Outlet />
