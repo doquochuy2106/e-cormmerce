@@ -20,7 +20,7 @@ const FirstOrderSaleProduct: React.FunctionComponent<FirstOrderSaleProps> = ({
           </p>
         </div>
       </div>
-      <div className="flex-1 p-2 relative">
+      <div className="flex-1 px-2 relative">
         <div className="bg-sky-200 w-max py-1 px-2 rounded-2xl mb-1 flex items-center gap-1 text-sm text-sky-800">
           <Icon icon="zi-unhide" size={16} />
           <Text>Mát</Text>
@@ -43,7 +43,7 @@ const FirstOrderSaleProduct: React.FunctionComponent<FirstOrderSaleProps> = ({
         <p>Đã bán: 123.456</p>
         <Button
           size="small"
-          className="absolute bottom-2 right-2 !p-1 !h-auto !min-h-0 !text-sm !rounded-full"
+          className="absolute bottom-0 right-0 !p-1 !h-auto !min-h-0 !text-sm !rounded-full"
         >
           +
         </Button>

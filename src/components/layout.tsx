@@ -4,16 +4,17 @@ import Footer from "./footer";
 import { Suspense } from "react";
 import { PageSkeleton } from "./skeleton";
 import { Toaster } from "react-hot-toast";
-import { ScrollRestoration } from "./scroll-restoration";
-import FloatingCartPreview from "./floating-cart-preview";
 import { Page } from "zmp-ui";
 
-export default function Layout() {
+export default function AppLayout() {
   return (
     <Page className="flex flex-col">
       <div className="w-screen h-screen flex flex-col bg-section text-foreground">
         <Header />
-        <div className="flex-1 overflow-y-auto bg-background">
+        <div
+          className="flex-1 overflow-y-auto bg-background"
+          style={{ paddingTop: "100px" }}
+        >
           <Suspense fallback={<PageSkeleton />}>
             <Outlet />
           </Suspense>
@@ -25,8 +26,6 @@ export default function Layout() {
             top: "calc(50% - 24px)",
           }}
         />
-        <FloatingCartPreview />
-        <ScrollRestoration />
       </div>
     </Page>
   );
