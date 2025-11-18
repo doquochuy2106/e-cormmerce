@@ -1,37 +1,70 @@
-import { Box, Header, Icon, Input, useNavigate } from "zmp-ui";
+import { Header, Icon } from "zmp-ui";
+import { useState } from "react";
 
 export default function Headerr() {
-  const navigate = useNavigate();
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleLogin = () => {
+    // Add login logic
+  };
+
+  const handleClearSearch = () => {
+    setSearchValue("");
+  };
+
   return (
-    <Header
-      showBackIcon={false}
-      className="bg-green-500 shadow-sm fixed z-50"
-      style={{ height: "100px" }}
-      title={
-        (
-          <div className="w-[75%] flex flex-col">
-            {/* Hàng 1: Search + Login */}
-            <div className="flex items-center gap-2 w-full">
-              <Input.Search
-                placeholder="Tìm kiếm..."
-                onFocus={() => navigate("/search")}
-              />
+    <>
+      <Header
+        showBackIcon={false}
+        className="bg-green-600 shadow-md"
+        style={{ padding: "4px 8px", height: "auto" }}
+        title={
+          (
+            <div className="w-full mt-7">
+              {/* Hàng 1: Search + Login + More + Close */}
+              <div className="flex items-center justify-between gap-2 mb-1">
+                {/* Nhóm trái: Search + Login */}
+                <div className="flex items-center gap-2">
+                  {/* Search Input */}
+                  <div className="flex items-center bg-white rounded px-2 py-1 w-[180px]">
+                    <Icon
+                      icon="zi-search"
+                      size={25}
+                      className="text-gray-400"
+                    />
+                    <input
+                      type="text"
+                      placeholder="Tìm sản phẩm"
+                      value={searchValue}
+                      onChange={(e) => setSearchValue(e.target.value)}
+                      className="border-none outline-none ml-1 text-xs bg-white w-full"
+                    />
+                  </div>
 
-              {/* Nút đăng nhập */}
-              <button className="bg-white text-black border border-green-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap">
-                Đăng nhập
-              </button>
-            </div>
+                  {/* Login Button */}
+                  <button
+                    onClick={handleLogin}
+                    className="bg-white text-green-600 px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap hover:bg-gray-100 transition"
+                  >
+                    Đăng nhập
+                  </button>
+                </div>
+              </div>
 
-            {/* Hàng 2: Subtitle */}
-            <div>
-              <span className="text-white text-xs font-semibold">
-                Siêu thị Online Sendo Farm
-              </span>
+              {/* Hàng 2: Subtitle + Quality Badge */}
+              <div className="flex items-center justify-between text-white">
+                <span className="text-xs font-semibold">
+                  Siêu thị Online Sendo Farm
+                </span>
+                {/* <div className="flex items-center gap- text-xs">
+                  <span>Chất lượng đảm bảo bởi</span>
+                </div> */}
+              </div>
             </div>
-          </div>
-        ) as unknown as string
-      }
-    />
+          ) as unknown as string
+        }
+      />
+      <div style={{ height: "55px" }}></div>
+    </>
   );
 }
