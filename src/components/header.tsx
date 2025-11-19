@@ -1,15 +1,10 @@
-import { Header, Icon } from "zmp-ui";
+import { Header, Icon, useNavigate } from "zmp-ui";
 import { useState } from "react";
 
 export default function Headerr() {
-  const [searchValue, setSearchValue] = useState("");
-
+  const navigate = useNavigate();
   const handleLogin = () => {
     // Add login logic
-  };
-
-  const handleClearSearch = () => {
-    setSearchValue("");
   };
 
   return (
@@ -33,10 +28,9 @@ export default function Headerr() {
                       className="text-gray-400"
                     />
                     <input
+                      onFocus={() => navigate("/search")}
                       type="text"
                       placeholder="Tìm sản phẩm"
-                      value={searchValue}
-                      onChange={(e) => setSearchValue(e.target.value)}
                       className="border-none outline-none ml-1 text-xs bg-white w-full"
                     />
                   </div>
