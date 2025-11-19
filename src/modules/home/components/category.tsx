@@ -20,7 +20,7 @@ export default function Category() {
           <TransitionLink
             key={category.id}
             className="flex flex-col items-center space-y-1 flex-none overflow-hidden cursor-pointer mx-auto"
-            to={`/category/${category.id}`}
+            to={`/category`}
           >
             <img
               src={category.image}
