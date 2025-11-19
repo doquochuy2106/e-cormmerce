@@ -1,16 +1,16 @@
-import { Product } from "@/types";
+import { IProduct } from "@/modules/home/types/home.type";
 import { Text } from "zmp-ui";
 interface DisplayProductProps {
-  product: Product;
+  product: IProduct;
 }
 
 const DisplayProduct = ({ product }: DisplayProductProps) => {
   return (
     <div className="bg-white p-4">
-      <img src={product.image} alt={product.name} />
-      <Text className="text-xl font-bold pt-2">{product.name}</Text>
+      <img src={product?.image} alt={product?.name} />
+      <Text className="text-xl font-bold pt-2">{product?.name}</Text>
       <Text className="text-2xl font-bold text-red-600 py-2">
-        {product.price.toLocaleString()}đ
+        {product?.price.toLocaleString()}đ
       </Text>
       <hr className="mt-2" />
       <Text className="pt-2">Đã bán: 123,456</Text>

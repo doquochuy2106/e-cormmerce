@@ -1,9 +1,9 @@
-import { useAtomValue } from "jotai";
 import FirstOrderSaleProduct from "./product/first-order-sale-product";
-import { flashSaleProductsState } from "@/state";
+import { useProducts } from "../hooks/use-product";
 
 const FirstOrderSale: React.FunctionComponent = () => {
-  const products = useAtomValue(flashSaleProductsState);
+  const { data: products, loading, error, refetch } = useProducts();
+
   return (
     <div className=" bg-white ">
       <h1 className="text-lg font-semibold  py-2 px-4 ">
@@ -12,7 +12,7 @@ const FirstOrderSale: React.FunctionComponent = () => {
       <div className="border-t">
         {products.length > 0 &&
           products.map((product) => (
-            <FirstOrderSaleProduct key={product.id} product={product} />
+            <FirstOrderSaleProduct key={product._id} product={product} />
           ))}
       </div>
     </div>

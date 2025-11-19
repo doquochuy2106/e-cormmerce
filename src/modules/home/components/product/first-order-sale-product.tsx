@@ -1,9 +1,9 @@
-import { Product } from "@/types";
 import { startTransition } from "react";
 import { Button, Icon, Text, useNavigate } from "zmp-ui";
+import { IProduct } from "../../types/home.type";
 
 interface FirstOrderSaleProps {
-  product: Product;
+  product: IProduct;
 }
 const FirstOrderSaleProduct: React.FunctionComponent<FirstOrderSaleProps> = ({
   product,
@@ -12,7 +12,7 @@ const FirstOrderSaleProduct: React.FunctionComponent<FirstOrderSaleProps> = ({
 
   const handleClick = () => {
     startTransition(() => {
-      navigate(`/product/${product.id}`);
+      navigate(`/product/${product._id}`);
     });
   };
 

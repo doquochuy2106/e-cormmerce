@@ -8,6 +8,8 @@ import AppLayout from "./components/layout";
 import SearchPage from "./modules/search";
 import ProductDetailPage from "./modules/product-detail";
 import PromotionPage from "./modules/promotion";
+import CategoryPage from "./modules/category";
+import { LoadingProvider } from "./contexts/loading.context";
 
 const SnackbarProviderComponent = ((SnackbarProvider as any).default ??
   SnackbarProvider) as React.ComponentType<any>;
@@ -16,16 +18,19 @@ const Layout = () => {
   return (
     <App theme={getSystemInfo().zaloTheme as AppProps["theme"]}>
       <SnackbarProviderComponent>
-        <ZMPRouter>
-          <Routes>
-            <Route path="/" element={<AppLayout />}>
-              <Route index element={<HomePage />} />
-            </Route>
-            <Route path="/search" element={<SearchPage />} />
-            <Route path="/product/:id" element={<ProductDetailPage />} />
-            <Route path="/promotion" element={<PromotionPage />} />
-          </Routes>
-        </ZMPRouter>
+        <LoadingProvider>
+          <ZMPRouter>
+            <Routes>
+              <Route path="/" element={<AppLayout />}>
+                <Route index element={<HomePage />} />
+              </Route>
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/product/:id" element={<ProductDetailPage />} />
+              <Route path="/promotion" element={<PromotionPage />} />
+              <Route path="/category" element={<CategoryPage />} />
+            </Routes>
+          </ZMPRouter>
+        </LoadingProvider>
       </SnackbarProviderComponent>
     </App>
   );

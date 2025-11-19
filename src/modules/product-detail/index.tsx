@@ -25,7 +25,7 @@ const ProductDetailPage = () => {
             <div className="w-[75%] flex flex-col">
               <div className="flex items-center gap-2 w-full">
                 <span className="text-black font-semibold text-lg">
-                  {product.name}
+                  {product?.name}
                 </span>
               </div>
             </div>
