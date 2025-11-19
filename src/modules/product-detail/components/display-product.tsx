@@ -1,7 +1,8 @@
 import { IProduct } from "@/modules/home/types/home.type";
+import { Product } from "@/types";
 import { Text } from "zmp-ui";
 interface DisplayProductProps {
-  product: IProduct;
+  product: Product;
 }
 
 const DisplayProduct = ({ product }: DisplayProductProps) => {
