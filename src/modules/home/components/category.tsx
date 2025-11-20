@@ -1,9 +1,10 @@
 import TransitionLink from "@/components/transition-link";
 import { useAtomValue } from "jotai";
 import { categoriesState } from "@/state";
+import { useCategories } from "../hooks/use-category";
 
 export default function Category() {
-  const categories = useAtomValue(categoriesState);
+  const { data: categories, loading, error, refetch } = useCategories();
 
   return (
     <div className="px-2">
@@ -18,7 +19,7 @@ export default function Category() {
       >
         {categories.map((category) => (
           <TransitionLink
-            key={category.id}
+            key={category._id}
             className="flex flex-col items-center space-y-1 flex-none overflow-hidden cursor-pointer mx-auto"
             to={`/category`}
           >

@@ -7,11 +7,13 @@ import { Button } from "zmp-ui";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import CategorySheet from "./CategorySheet";
-import CartSheet from "./CartSheet";
+import CartSheet from "../modules/cart/component/CartSheet";
 
 // Import dữ liệu categories và cart mock
 import categoriesData from "@/mock/categories.json";
 import cartMockData from "@/mock/cart.json";
+import { useCategories } from "@/modules/home/hooks/use-category";
+import { useProducts } from "@/modules/home/hooks/use-product";
 
 const NAV_ITEMS = [
   {
@@ -42,6 +44,8 @@ export default function Footer() {
   const cart = useAtomValue(cartState);
   const [showCategorySheet, setShowCategorySheet] = useState(false);
   const [showCartSheet, setShowCartSheet] = useState(false);
+  const { data: categories, loading, error, refetch } = useCategories();
+  const { data: products } = useProducts();
 
   // Use mock data if cart is empty (for development)
   const cartItems = cart.length > 0 ? cart : cartMockData;
@@ -166,7 +170,7 @@ export default function Footer() {
       <CategorySheet
         visible={showCategorySheet}
         onClose={() => setShowCategorySheet(false)}
-        categories={categoriesData}
+        categories={categories}
         onSelectCategory={handleCategorySelect}
       />
 
@@ -174,20 +178,21 @@ export default function Footer() {
       <CartSheet
         visible={showCartSheet}
         onClose={() => setShowCartSheet(false)}
-        items={cartItems.map((item: any) => ({
-          id: item.product.id,
-          name: item.product.name,
-          image: item.product.image,
-          price: item.product.price,
-          quantity: item.quantity,
-          badges: {
-            newCustomer: item.product.id === 1, // Khoai lang có badge "Ưu đãi khách mới"
-            refrigerated: item.product.category.id === 8, // Thực phẩm đông lạnh có badge "Bảo quản mát"
-          },
-        }))}
+        // items={cartItems.map((item: any) => ({
+        //   id: item.product.id,
+        //   name: item.product.name,
+        //   image: item.product.image,
+        //   price: item.product.price,
+        //   quantity: item.quantity,
+        //   badges: {
+        //     newCustomer: item.product.id === 1, // Khoai lang có badge "Ưu đãi khách mới"
+        //     refrigerated: item.product.category.id === 8, // Thực phẩm đông lạnh có badge "Bảo quản mát"
+        //   },
+        // }))}
         onUpdateQuantity={handleUpdateCartQuantity}
         onRemoveItem={handleRemoveCartItem}
         onCheckout={handleCheckout}
+        cardProducts={products}
       />
     </>
   );
