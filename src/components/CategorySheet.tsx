@@ -1,33 +1,22 @@
+import { useCategories } from "@/modules/home/hooks/use-category";
+import { ICategory } from "@/modules/home/types/home.type";
 import { Sheet } from "zmp-ui";
-
-interface Category {
-  id: number;
-  name: string;
-  image: string;
-}
-
-interface Promotion {
-  id: number;
-  name: string;
-  image: string;
-  badge?: string;
-}
 
 interface CategorySheetProps {
   visible: boolean;
   onClose: () => void;
-  categories: Category[];
+  categories: ICategory[];
   onSelectCategory?: (categoryId: number) => void;
 }
 
 export default function CategorySheet({
+  //PROPS CHUYỀN SANG
   visible,
   onClose,
   categories,
   onSelectCategory,
 }: CategorySheetProps) {
-  const handleCategoryClick = (categoryId: number) => {
-    onSelectCategory?.(categoryId);
+  const handleCategoryClick = (categoryId: string) => {
     onClose();
   };
 
@@ -79,8 +68,8 @@ export default function CategorySheet({
             <div className="grid grid-cols-4 gap-3">
               {categories.map((category) => (
                 <button
-                  key={category.id}
-                  onClick={() => handleCategoryClick(category.id)}
+                  key={category._id}
+                  onClick={() => handleCategoryClick(category._id)}
                   className="flex flex-col items-center gap-2 active:opacity-70 transition-opacity"
                 >
                   <div className="w-16 h-16 rounded-2xl overflow-hidden bg-gray-100 flex items-center justify-center">
