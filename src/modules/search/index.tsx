@@ -47,6 +47,7 @@ export function DisplaySearchPage() {
           <SearchResult keyword={keyword} />
         </Box>
       )}
+      <div className="h-16" />
       <BottomBar />
     </Page>
   );
