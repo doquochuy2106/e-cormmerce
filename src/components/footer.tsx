@@ -157,10 +157,13 @@ export default function Footer() {
           {/* right: CTA button */}
           <div className="flex items-center">
             <Button
-              aria-label="Đặt mua ngay"
-              className="bg-red-500 text-white rounded-lg px-4 py-2 whitespace-nowrap flex items-center justify-center active:scale-95 shadow-md min-w-[96px]"
+              aria-label="Đặt mua"
+              className="bg-red-500 text-white rounded-lg px-2 py-1 flex flex-col items-center justify-center active:scale-95 shadow-md min-w-[100px]"
             >
-              Đặt mua ngay
+              <div className="flex flex-col items-center justify-center">
+                <span className="text-xs font-semibold">Đặt mua</span>
+                <span className="text-[10px] font-medium">0đ</span>
+              </div>
             </Button>
           </div>
         </div>
@@ -178,17 +181,6 @@ export default function Footer() {
       <CartSheet
         visible={showCartSheet}
         onClose={() => setShowCartSheet(false)}
-        // items={cartItems.map((item: any) => ({
-        //   id: item.product.id,
-        //   name: item.product.name,
-        //   image: item.product.image,
-        //   price: item.product.price,
-        //   quantity: item.quantity,
-        //   badges: {
-        //     newCustomer: item.product.id === 1, // Khoai lang có badge "Ưu đãi khách mới"
-        //     refrigerated: item.product.category.id === 8, // Thực phẩm đông lạnh có badge "Bảo quản mát"
-        //   },
-        // }))}
         onUpdateQuantity={handleUpdateCartQuantity}
         onRemoveItem={handleRemoveCartItem}
         onCheckout={handleCheckout}
