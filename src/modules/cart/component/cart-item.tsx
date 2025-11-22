@@ -100,9 +100,7 @@ const CartItem = ({ cardProducts }: CartSheetProps) => {
                       />
                     </svg>
                   </button>
-                  <span className="w-10 text-center font-medium">
-                    {/* {item.quantity} */}
-                  </span>
+                  <span className="w-10 text-center font-medium">{1}</span>
                   <button
                     onClick={() => handleQuantityChange(item._id, 1)}
                     className="w-8 h-8 flex items-center justify-center bg-gray-100 rounded hover:bg-gray-200"

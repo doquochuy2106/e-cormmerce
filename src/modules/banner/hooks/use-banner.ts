@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
-import { getCategories, getProducts } from "../services/home.api";
-import { useApiWrapper } from "@/hooks/use-api-wrapper";
-import { ICategory, IProduct } from "../types/home.type";
 
-export const useCategories = () => {
+import { useApiWrapper } from "@/hooks/use-api-wrapper";
+
+import { IBanner } from "../types/banner.type";
+import { getBanners } from "../services/banner.api";
+
+export const useBanners = () => {
   const { handleApiCall } = useApiWrapper();
-  const [data, setData] = useState<ICategory[]>([]);
+  const [data, setData] = useState<IBanner[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchCategories = async () => {
+  const fetchBanners = async () => {
     try {
-      const res = await handleApiCall(() => getCategories(), {
+      const res = await handleApiCall(() => getBanners(), {
         setLocalLoading: setLoading,
         useGlobal: true,
       });
-      if (res && res.data&&res.data.data) {
+      if (res && res.data && res.data.data) {
         setData(res.data.data);
       } else {
         setData([]);
@@ -28,8 +30,8 @@ export const useCategories = () => {
   };
 
   useEffect(() => {
-    fetchCategories();
+    fetchBanners();
   }, []);
 
-  return { data, loading, error, refetch: fetchCategories };
+  return { data, loading, error, refetch: fetchBanners };
 };

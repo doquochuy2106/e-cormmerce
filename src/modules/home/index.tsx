@@ -1,4 +1,4 @@
-import Banners from "./components/banners";
+import Banners from "../banner/component/banners";
 import Category from "./components/category";
 import FirstOrderSale from "./components/first-order-sale";
 import FlashSales from "./components/flash-sales";

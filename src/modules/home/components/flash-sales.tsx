@@ -2,9 +2,12 @@ import { useAtomValue } from "jotai";
 import { flashSaleProductsState } from "@/state";
 import { Text, useNavigate } from "zmp-ui";
 import SaleProduct from "./product/sale-product";
+import { useProducts } from "../hooks/use-product";
 
 export default function FlashSales() {
-  const products = useAtomValue(flashSaleProductsState);
+  // const products = useAtomValue(flashSaleProductsState);
+  const { data: products, loading, error, refetch } = useProducts();
+  
   const navigate = useNavigate();
   return (
     <div className="px-2" onClick={() => navigate("/promotion")}>
@@ -22,7 +25,7 @@ export default function FlashSales() {
           {products.length > 0 &&
             products.map((product) => (
               <SaleProduct
-                key={product.id}
+                key={product._id}
                 imageUrl={product.image}
                 price={product.price}
               />
